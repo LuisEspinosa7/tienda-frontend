@@ -1,0 +1,62 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">{{nombreModulo}} </h1>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12">
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">{{titulo}}</h6>
+            </div>
+            <div class="card-body">
+                Dando clic en Agregar Salida, puede agregar cada una de las salidas (Ventas) de los productos
+                disponibles en el sistema.
+                <br />
+
+                <button class="btn btn-primary" (click)="openModalAgregarSalida()">Agregar Salida</button>
+
+
+                <table class="table table-striped">
+                    <thead class="black white-text">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="detallesTemporales?.length != 0">
+                        <tr *ngFor="let detalle of detallesTemporales; index as i">
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>
+                                {{ detalle.producto.nombre }}
+                            </td>
+                            <td>{{ detalle.cantidad | number }}</td>
+                            <td>
+                                <a class="btn btn-danger btn-circle" (click)="confirmarEliminacion(i)">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="detallesTemporales?.length == 0">
+                        <tr>
+                            <td colspan="3" class="no-data-available">No hay salidas agregadas!</td>
+                        </tr>
+                    <tbody>
+                </table>
+
+
+                <button class="btn btn-primary" (click)="confirmarAdicion()"
+                    [disabled]="detallesTemporales?.length == 0">Confirmar Salidas</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

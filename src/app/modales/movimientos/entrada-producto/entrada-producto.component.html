@@ -1,0 +1,60 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{titulo}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <div class="col-lg-12" *ngIf="productosCargado">
+
+        <div class="card mb-6 border-left-primary">
+
+            <div class="card-header">
+                Datos Basicos:
+            </div>
+
+            <div class="card-body">
+
+                <form [formGroup]="formularioEntrada">
+
+
+                    <div class="form-group">
+                        <label for="producto">Producto</label>
+                        <select class="form-control" id="producto" formControlName="producto">
+                            <option *ngFor="let producto of productosJSON" [value]="producto.id">
+                                {{producto.nombre}}</option>
+                        </select>
+                        <small
+                            *ngIf="formularioEntrada.controls['producto'].hasError('required') && formularioEntrada.controls['producto'].touched"
+                            class="text-danger support-text"> (El producto es requerido)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad: </label>
+                        <input type="number" formControlName="cantidad" class="form-control" id="cantidad">
+
+                        <small
+                            *ngIf="formularioEntrada.controls['cantidad'].hasError('required') && formularioEntrada.controls['cantidad'].touched"
+                            class="text-danger support-text"> (La cantidad es requerida)</small>
+                        <small
+                            *ngIf="formularioEntrada.controls['cantidad'].hasError('pattern') && formularioEntrada.controls['cantidad'].touched"
+                            class="text-danger support-text"> (La cantidad deben ser numeros) </small>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary" (click)="confirmarEntrada()"
+                        [disabled]="!formularioEntrada.valid">Confirmar</button>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('close')">Cerrar</button>
+</div>
