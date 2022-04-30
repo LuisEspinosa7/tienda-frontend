@@ -9,7 +9,7 @@ Moreover, it has a Single Page Application SPA representing the User Interface. 
   	Core	
     </td>
     <td>
-  	HTML, CSS 3+, Angular 8.3.6, Angular Material.
+  	HTML, CSS 3+, Angular 8.3.6, Angular Material, TypeScript.
     </td>
   </tr>
   <tr>
